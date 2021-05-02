@@ -55,7 +55,7 @@ class TimeBoxOrthodox {
              * Введенная дата (или текущая).
              */
             moment: undefined,
-            mentMLS: undefined,
+            momentMLS: undefined,
             /**
              * Год текущей даты.
              */
@@ -239,7 +239,7 @@ class TimeBoxOrthodox {
             document.getElementById('zachala').innerHTML = `Зачала всего лета по Пасхе в год <span class="yearBG">${valYear} </span>`;
             document.location.replace('#');
             // S:S insert code 333
-            return `${userdate}/${this.theMoment.getMonth() + 3}/${this.theMoment.getDate()}`;
+            return `${userdate}/${this.theMoment.getMonth() + 1}/${this.theMoment.getDate()}`;
         }
         else {
             throw `${valYear} ; Введенное вами: / ${userdate} / не подходит.
@@ -368,6 +368,7 @@ class TimeBoxOrthodox {
         console.log(`Седмица на Воздвижение - ${Math.floor(kolichestvoSedmicPoPyatidesyatnice)}`);
         // Если `stupka` равна нулю, то отступки нет
         stupka = parseInt((kolichestvoSedmicPoPyatidesyatnice - 17).toString(), 10);
+        console.log(`YSTM=-=-=-${stupka}`);
         if (stupka > 0 && this.formatsEaster.currentWeek < 27) {
             // это отступка (- единица, это коррекция для седмицы в
             // отличии от Недели)
@@ -392,6 +393,7 @@ class TimeBoxOrthodox {
         // if(this.keySystemYear != 0){
         this.formatsEaster.vhodMLS = this.formatsEaster.nextEasterMLS - CONST_MLS_DAY * 7;
         this.formatsEaster.vhod = new Date(this.formatsEaster.vhodMLS).toString().slice(0, 15);
+        console.log('=-=-=- текущая седмица: ', this.formatsEaster.currentWeek);
         return `Вход Господень во Иерусалим: ${this.formatsEaster.vhod}`;
         // } else {
         // console.log(CONST_LOG_WARNING)
@@ -400,7 +402,8 @@ class TimeBoxOrthodox {
     }
     calculateLinksAll() {
         let ccc = 0;
-        this.formatsLinks.linkToAprakosPage = this.formatsLinks.currentWeek + '/' + this.formatsEaster.dayNum + '.html';
+        // S:S 11-2021
+        this.formatsLinks.linkToAprakosPage = this.formatsEaster.currentWeek + '/' + this.formatsEaster.dayNum + '.html';
         // S:S // корректировка отступки  для ссылок в древе на id седмицы /// 444-2021-555
         if (this.formatsEaster.currentWeek > 40 && this.formatsEaster.promWeeks > 0) {
             ccc = this.formatsEaster.currentWeekStupka;
