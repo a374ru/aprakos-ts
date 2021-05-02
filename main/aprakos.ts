@@ -558,7 +558,8 @@ class TimeBoxOrthodox implements Paskhalia {
 
                 let ccc = 0
 
-                this.formatsLinks.linkToAprakosPage = this.formatsLinks.currentWeek + '/' + this.formatsEaster.dayNum + '.html'
+                // S:S 11-2021
+                this.formatsLinks.linkToAprakosPage = this.formatsEaster.currentWeek + '/' + this.formatsEaster.dayNum + '.html'
 
                 // S:S // корректировка отступки  для ссылок в древе на id седмицы /// 444-2021-555
                 if (this.formatsEaster.currentWeek as number > 40 && this.formatsEaster.promWeeks as number > 0) {

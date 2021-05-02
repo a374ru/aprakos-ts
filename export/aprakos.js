@@ -368,7 +368,6 @@ class TimeBoxOrthodox {
         console.log(`Седмица на Воздвижение - ${Math.floor(kolichestvoSedmicPoPyatidesyatnice)}`);
         // Если `stupka` равна нулю, то отступки нет
         stupka = parseInt((kolichestvoSedmicPoPyatidesyatnice - 17).toString(), 10);
-        console.log(`YSTM=-=-=-${stupka}`);
         if (stupka > 0 && this.formatsEaster.currentWeek < 27) {
             // это отступка (- единица, это коррекция для седмицы в
             // отличии от Недели)
@@ -393,7 +392,6 @@ class TimeBoxOrthodox {
         // if(this.keySystemYear != 0){
         this.formatsEaster.vhodMLS = this.formatsEaster.nextEasterMLS - CONST_MLS_DAY * 7;
         this.formatsEaster.vhod = new Date(this.formatsEaster.vhodMLS).toString().slice(0, 15);
-        console.log('=-=-=- текущая седмица: ', this.formatsEaster.currentWeek);
         return `Вход Господень во Иерусалим: ${this.formatsEaster.vhod}`;
         // } else {
         // console.log(CONST_LOG_WARNING)
