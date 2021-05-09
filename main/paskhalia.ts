@@ -1,12 +1,12 @@
 export interface Pashalia {
 
 
-    readonly pashalia:{}
+    readonly pashalia: {}
 
-} 
+}
 
 
-export class ClassModelTest{
+export class ClassModelTest {
 
     read() {
         console.log("---OK!-- javascript module tessting ---OK!---");

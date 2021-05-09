@@ -446,10 +446,15 @@ class TimeBoxOrthodox {
         if (this.formatsEaster.currentWeek > 7) {
             document.getElementById('date3').innerHTML = "По Пятидесятнице";
         }
-        else {
+        else if (this.formatsEaster.currentWeek == 1) {
             document.getElementById('date3').innerHTML = "СВЕТЛАЯ СЕДМИЦА";
-            // let inDate3 = document.getElementById('date3')!.remove()
             document.getElementById('date4').remove();
+        }
+        else {
+            // здесь можно разместить код для 49 дней по Пасхе 
+            document.getElementById('date3').remove();
+            document.getElementById('date4').remove();
+            document.getElementById('date5').remove();
         }
         // Выделение блока текущей седмицы.
         var slb, vvv = "seed";
