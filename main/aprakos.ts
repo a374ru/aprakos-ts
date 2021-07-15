@@ -213,7 +213,7 @@ class TimeBoxOrthodox implements Paskhalia {
 
         /**
         * Правосавная Пасхалия по датам Григорианского Календаря по 2100 год.
-        *k Имеет индексную сигнатуру (подпись).
+        * Имеет индексную сигнатуру (подпись).
         *
         */
         paskhalia: { [key: number]: [number, number] } = {
@@ -626,8 +626,8 @@ class TimeBoxOrthodox implements Paskhalia {
                         document.getElementById('date4')!.remove()
 
                 } else {
-                        
-                       // здесь можно разместить код для 49 дней по Пасхе 
+
+                        // здесь можно разместить код для 49 дней по Пасхе 
                         document.getElementById('date3')!.remove()
                         document.getElementById('date4')!.remove()
                         document.getElementById('date5')!.remove()
