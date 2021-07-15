@@ -1,0 +1,3 @@
+[submodule "aprakos-ts.wiki"]
+	path = aprakos-ts.wiki
+	url = git://github.com/a374ru/aprakos-ts.wiki.git
