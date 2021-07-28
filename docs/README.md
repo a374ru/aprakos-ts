@@ -1,9 +1,10 @@
 # Документация по скрипту `aprakos.ts`
 
+<br>
 
 ![img](https://4.bp.blogspot.com/-YwQ8PL9Ml_g/Xc6ViMiv96I/AAAAAAAAEl0/21Cl0nIvEW0bAW5KQfAFevmbZUashMVDwCK4BGAYYCw/s1600/Group%2B2.png)
 
-
+<br>
 
 ### Вычисления православных зачал для всего Пасхального года c учетом Двунадесятых праздников, отступок и преступок всего года по типикону.
 
@@ -17,7 +18,7 @@
 
 ### Дополнительно…
 
-+ [Настройка проекта TypeScript](001.md)
++ [Настройка проекта `TypeScript`](001.md)
 - [Настройка документации `TypeDoc`](typedoc.md)
 + [Публикация документации на `ReadTheDocs`](readthedocs.md)
 - [Настройка документации `WIKI Github`](wiki.md)
