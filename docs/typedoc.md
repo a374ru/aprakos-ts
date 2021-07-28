@@ -22,7 +22,7 @@ c.json` и внесите в него основное:
    "entryPoints": ["main/aprakos.ts"],
    "out": "docs/generated",
    "name": "Aprakos-TS",
-   "theme": "minimal"
+   "theme": "default"
 }
 ```
 
