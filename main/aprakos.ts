@@ -1,16 +1,22 @@
+// Во имя Отца и Сына и Святаго Духа. Аминь.
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// function a374ru() {}
+
 /**
- * Во имя Отца и Сына и Святаго Духа. Аминь.
-*/
-function redirToPageApr() {
-
-}
+ * Православная Пасхалия есть основание для вычислений. 
+ * Реализуется в конструкторе. Предел Пасхалии 2099 год. Далее требуется коректировка вычислений со сдвигом в один день. Если до 2100 года разница в вычислениях состовляет 13 единиц, то после 2100 года разница между числами в календарях достигнет 14 единиц.
+ */
 interface Paskhalia {
-
+        /**
+         * Переменная для объекта с датами.
+         */
         readonly paskhalia: {}
-
 }
 
-
+/**
+ * Определение собственного типа для удобства преобразований.
+ */
 type MyType = {
 
         [id: string]:
@@ -21,12 +27,14 @@ type MyType = {
 }
 
 /**
-* Сутки в миллисекундах
+* Экспонента (сокращение) числа для суток в миллисекундах (86400000).
+*
 */
 const CONST_MLS_DAY = 864E5
 
 /**
-* Константа 70 дней в миллисекудах
+* Число 70-ти дней в миллисекудах (604800000).
+*
 */
 const CONST_MLS_MiF = CONST_MLS_DAY * 7 * 10
 
@@ -35,8 +43,8 @@ const ER_606 = "НЕ ОПРЕДЕЛЕН КЛЮЧ ГОДА"
 
 /**
 * Текущее время очень важно для отработки всего скрипта.
-* `TimeBoxOrthodox` - момент времени захваченный и упакованный в шкатулку времени.
-* Важно понимать в каком полугодии Богослужебного года «далее **БГ**» находится `timeBox`.
+* `TimeBoxOrthodox` - момент времени захваченный и упакованный в Православную шкатулку времени.
+* Для правильных вычислений скрипту важно понимать в каком полугодии Богослужебного года «далее **БГ**» находится `timeBox`.
 *
 */
 class TimeBoxOrthodox implements Paskhalia {
@@ -76,7 +84,7 @@ class TimeBoxOrthodox implements Paskhalia {
 
                 /**
                  * Возвращает дату Православной Пасхи в текущем системном Григорианском календаре.
-                 * --------------------------------------------------------------------------
+                 * 
                  * Инициализация данной переменной зависит от момента времени и числа года
                  * по Григорианскому календарю. Так как Богослужебный год начинается и оканчивается
                  * датами Пасх, которые статичны и не должны менять своего значения в коде при
@@ -166,7 +174,9 @@ class TimeBoxOrthodox implements Paskhalia {
         }
 
 
-
+        /**
+         * Хранилище html-ссылок для DOM элементов
+         */
         formatsLinks: MyType = {
 
                 // Ссылка на страницу текущего зачала.
@@ -185,7 +195,7 @@ class TimeBoxOrthodox implements Paskhalia {
 
 
         // Коллекция двунадесятых праздников, из которых 9
-        // статичны и 4 динамичны.
+        // статичны и 4 динамичных, которые требуют вычисления своих дат в зависимости от даты прошедшей Пасхи и соответствено текущей седмицы.
         NINEHOLIDAYS = {
 
                 rojdestvoBogorodici: { month: 9, day: 21 },
@@ -195,24 +205,28 @@ class TimeBoxOrthodox implements Paskhalia {
                 kreshenieGospodne: { month: 1, day: 19 },
                 sretenieGospodne: { month: 2, day: 15 },
                 blagoveshenieBogorodici: { month: 4, day: 7 },
+                // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
                 //  Здесь бывают по календарю еще четыре `ПЕРЕХОДЯЩИХ` празнества:
                 // 8. Вход Господень в Иерусалим,
                 // 0. Пасха(не входящая в состав двунадесятых),
                 // 9. Вознесение,
                 // 10. Пятьдесятница.
+                // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
                 preobrajjenieGospodne: { month: 8, day: 19 },
                 uspenieBogorodici: { month: 8, day: 28 }
 
         }
 
 
-
+        /**
+         * Названия дней седмицы в правильном порядке на русском языке.
+         */
         arayDays = [
                 'ВОСРЕСЕНЬЕ', 'ПОНЕДЕЛЬНИК', 'ВТОРНИК', 'СРЕДА', 'ЧЕТВЕРГ', 'ПЯТНИЦА', 'СУББОТА'
         ];
 
         /**
-        * Правосавная Пасхалия по датам Григорианского Календаря по 2100 год.
+        * Правосавная Пасхалия по датам Григорианского Календаря 1999—2100 год.
         * Имеет индексную сигнатуру (подпись).
         *
         */
@@ -227,7 +241,7 @@ class TimeBoxOrthodox implements Paskhalia {
 
 
         /**
-        * Текущий момент времени
+        * Текущий системный момент времени
         */
         theMoment!: Date
 
@@ -242,8 +256,6 @@ class TimeBoxOrthodox implements Paskhalia {
         keySystemYear: number = 0
 
         /**
-        * @category constructor
-        *
         * Конструктор может принимать дату в формате `YYYY/mm/dd`
         * разделенную слешами ` / `. Метод проверяет введенную дату в
         * диапазоне Пасхалии. Инициализирует `momemt` входящей датой и
@@ -265,7 +277,7 @@ class TimeBoxOrthodox implements Paskhalia {
                 try {
 
                         if (date != undefined) {
-                                // S:S 434-2021-333 требуется валидация введенных параметров
+                                // TODO: 434-2021-333 требуется валидация введенных параметров
 
                                 let valDate = this.validate(date)
 
@@ -322,7 +334,7 @@ class TimeBoxOrthodox implements Paskhalia {
                         document.getElementById('zachala')!.innerHTML = `Зачала всего лета по Пасхе в год <span class="yearBG">${valYear} </span>`
                         document.location.replace('#')
 
-                        // S:S insert code 333
+                        // TODO: insert code 333
                         return `${userdate}/${this.theMoment.getMonth() + 1}/${this.theMoment.getDate()}`
 
 
@@ -445,7 +457,7 @@ class TimeBoxOrthodox implements Paskhalia {
                 // Количество промежуточных седмиц пред МиФ. Отступка Богояввденская.
                 this.formatsEaster.promWeeks = this.formatsEaster.allWeeks - 50
 
-                // S:S // 436-2021-777 Выдает седмицу на единицу менее реальной из-за функции `parseInt()`
+                // TODO: // 436-2021-777 Выдает седмицу на единицу менее реальной из-за функции `parseInt()`
                 // Текущая седмица от Пасхи.
                 let sss = this.formatsEaster.currentWeek = parseInt(
                         (this.formatsEaster.momentMLS as number - (this.formatsEaster.lastEasterMLS as number))
@@ -489,7 +501,7 @@ class TimeBoxOrthodox implements Paskhalia {
          *
          * Возвращает количество дней - ступок.
          */
-        // S:S // 463-2021-333 !!! не сделано !!!
+        // TODO: // 463-2021-333 !!! не сделано !!!
         vozdviggenieKresta(): string {
 
                 let stupka = 0
@@ -558,14 +570,14 @@ class TimeBoxOrthodox implements Paskhalia {
 
                 let ccc = 0
 
-                // S:S 11-2021
+                // TODO: 11-2021
                 this.formatsLinks.linkToAprakosPage = this.formatsEaster.currentWeek + '/' + this.formatsEaster.dayNum + '.html'
 
-                // S:S // корректировка отступки  для ссылок в древе на id седмицы /// 444-2021-555
+                // TODO: // корректировка отступки  для ссылок в древе на id седмицы /// 444-2021-555
                 if (this.formatsEaster.currentWeek as number > 40 && this.formatsEaster.promWeeks as number > 0) {
 
                         ccc = this.formatsEaster.currentWeekStupka as number
-                        // S:S // Требуется откорректировать ссылку с учётом отступки.
+                        // TODO: // Требуется откорректировать ссылку с учётом отступки.
                         this.formatsLinks.linkToAprakosPage = ccc + '/' + this.formatsEaster.dayNum + '.html'
                         this.formatsLinks.linkToElementID2 = `<a href="#seed${ccc}"  title="Сегодня : ${this.formatsEaster.dayName}">${this.formatsEaster.promWeeks as number + ccc}</a>`
                         this.formatsLinks.linkToElementID4 = `<a href="#seed${ccc}"  title="Сегодня : ${this.formatsEaster.dayName}">${this.formatsEaster.promWeeks as number + ccc - 7}</a>`
@@ -596,7 +608,7 @@ class TimeBoxOrthodox implements Paskhalia {
          * На главной странице вид счета седмиц должен оставаться неизменным и последовательным.
          * Ссылка же на id-элемент страницы  изменяется с учётом отступок и преступок.
          *
-         * S:S  Требуется добавить код для вычисления Воздвиженской отступки. /// 445-2021-555
+         * TODO:  Требуется добавить код для вычисления Воздвиженской отступки. /// 445-2021-555
          */
 
         insertElements(): string {
@@ -674,7 +686,7 @@ class TimeBoxOrthodox implements Paskhalia {
                                 slb = " colorBlock";
                                 seedday = "seedday-" + this.formatsEaster.currentWeek + "-" + this.formatsEaster.dayNum;
                         }
-                // S:S // Требуется продолжить скрипт на условиях дальнейшего распротранения. 436-2021-555
+                // TODO: // Требуется продолжить скрипт на условиях дальнейшего распротранения. 436-2021-555
                 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
                 // День Пасхи приходится на начало следующей седмицы по системному календарю, которая числом превышает
                 // допущенный диаппазон с учетом отступок в 50 седмиц. Поэтому при наступлении исключения
@@ -694,10 +706,14 @@ class TimeBoxOrthodox implements Paskhalia {
 
 } // end class
 
-// =-=-=-=-=-=-=-=-=-= start sdf
-
-// let apr = new TimeBoxOrthodox("2037")
+/**
+ * Экземпляр по умолчанию с именем `apr`. Для получения дат другого Богослужебного года установите в скрипт свой экземпляр передав в параметре конструктора нужный вам год, например так:
+ * 
+ * ```typescript
+ * let apr = new TimeBoxOrthodox("2037")
+ * ```
+ * 
+ */
+// 
 let apr = new TimeBoxOrthodox()
-    // console.log(`${sdf.keySystemYear < 0 ? `${sdf.keySystemYear} /// Ныне идет вторая часть Богослужебного года.` :"Ныне идет первая часть Богослужебного года."} `, sdf.formatsEaster.lastEaster, sdf.formatsEaster.nextEasterMLS, sdf.theMoment, "\n-=-=-=-\n", sdf.formatsEaster)
-
 
