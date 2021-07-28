@@ -13,3 +13,17 @@
 <!-- Documents: [description](https://a374ru.github.io/aprakos/001.html) … RU -->
 
 <!-- Documents: [code the project](https://a374ru.github.io/TS-aprakos/gendocs/index.html) … RU -->
+
+
+### Дополнительно…
+
++ [Настройка проекта TypeScript](001.md)
+- [Настройка документации `TypeDoc`](typedoc.md)
++ [Публикация документации на `ReadTheDocs`](readthedocs.md)
+- [Настройка документации `WIKI Github`](wiki.md)
+<!-- [text](https://link) -->
+
+<br>
+<br>
+
+![img](https://1.bp.blogspot.com/-hOxN5KX2KfY/YPplNP_w6xI/AAAAAAAAGz0/nNxSLwD5lnQhvFnce_DzmIoSRWyY9A3QACLcBGAsYHQ/s800/theend-beats.png)
