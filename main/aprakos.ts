@@ -198,7 +198,11 @@ class TimeBoxOrthodox implements Paskhalia {
 
         }
 
-
+        /**
+         * Метод вычисляет номер гласа для текущей седмицы.
+         * 
+         * @returns строку описания
+         */
 
         glasSedmici() {
 
