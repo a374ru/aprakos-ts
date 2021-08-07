@@ -1,0 +1,63 @@
+# Настройка проекта на TypeScript
+
+## Необходимое оборудование
+
+- Проверяем в терминале наличие программы `NPM` командой:<br> `npm -v`.
+- При отрицательном результате скачиваем и устанавливаем версию `Node.js` с сайта производителя - [здесь](https://nodejs.org/en/) .
+- Устанавливаем TypeScript <span style="color: #e34234;">глобально</span> командой:<br> 
+  
+```zsh
+sudo npm -g install typescript`
+```
+
+### Создаем структуру директорий (папок) для проекта
+
+- project_name/
+    - docs/
+      - generated/
+    - export/
+    - main/
+    - ss/
+
+### Инициализация TS
+
+1. Инициализируйте `TypeScript` <span style="color: #e34234;">локально</span> в директории `project_name`. Для этого выполните переход в терминале  по адресу директории `project_name`.
+   
+```zsh
+cd ~/project_name
+```
+
+2. Выполните команду инициализации `TS` в терминале:
+   
+```zsh
+tsc --init
+```
+
+Настройте конфигурацию (или нет) в сгенерированном файле `tsconfig.json`. 
+
+3. Задайте папку назначения для конвертируемых будущих файлов `javascript`. 
+4. Выберите подходящую версию `ecmascript`.
+
+Далее создайте файл `index.ts` в папке `main` и выполните в терминале по адресу папки `main` команду:
+
+```zsh
+tsc
+```
+Должен быть сгенерирован файл - `index.js`, и просмотрите его в нашей структуре в папке назначения – `export`.
+
+
+Установите в папку с именем `project_name` файл управления пакетами и настройками `package.json` командой:
+
+```zsh
+npm -init -y
+```
+
+Установите и настройте программу генерации документации `Typedoc` по языку `TypeScript`  […здесь](https://github.com/TypeStrong/typedoc) или другую.
+
+
+[…далее о документировании проекта](typedoc.md)
+
+
+<br><br>
+![img](https://1.bp.blogspot.com/-hOxN5KX2KfY/YPplNP_w6xI/AAAAAAAAGz0/nNxSLwD5lnQhvFnce_DzmIoSRWyY9A3QACLcBGAsYHQ/s694/theend-beats.png)
+

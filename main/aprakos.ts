@@ -201,7 +201,7 @@ class TimeBoxOrthodox implements Paskhalia {
         /**
          * Метод вычисляет номер гласа для текущей седмицы.
          * 
-         * @returns строку описания
+         * @returns 
          */
 
         glasSedmici() {
@@ -218,7 +218,7 @@ class TimeBoxOrthodox implements Paskhalia {
                         this.formatsEaster.glass = 8;
                 }
 
-                return console.log(`Для текущей ${this.formatsEaster.currentWeek} седмицы установлен глас – ${this.formatsEaster.glas}`);
+                return `Для текущей ${this.formatsEaster.currentWeek} седмицы установлен глас – ${this.formatsEaster.glas}`;
 
         }
 
@@ -273,7 +273,6 @@ class TimeBoxOrthodox implements Paskhalia {
 
         /**
         * Ключ системного года.
-        * 
         * Новый год делит на две части Пасхальный или Бгслужéбный Го́дъ.
         * Положительное значение ключа указывает на первую часть `БГ`.
         * Отрицательное значение указывает на вторую часть `БГ`.

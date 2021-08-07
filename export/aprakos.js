@@ -1,10 +1,10 @@
 "use strict";
-var CONST_MLS_DAY = 864E5;
-var CONST_MLS_MiF = CONST_MLS_DAY * 7 * 10;
-var CONST_LOG_WARNING = "Будте вниматильней, проверте правильность вводимой даты.";
-var ER_606 = "НЕ ОПРЕДЕЛЕН КЛЮЧ ГОДА";
-var TimeBoxOrthodox = (function () {
-    function TimeBoxOrthodox(date) {
+const CONST_MLS_DAY = 864E5;
+const CONST_MLS_MiF = CONST_MLS_DAY * 7 * 10;
+const CONST_LOG_WARNING = "Будте вниматильней, проверте правильность вводимой даты.";
+const ER_606 = "НЕ ОПРЕДЕЛЕН КЛЮЧ ГОДА";
+class TimeBoxOrthodox {
+    constructor(date) {
         this.formatsEaster = {
             dayName: undefined,
             dayNum: undefined,
@@ -67,14 +67,14 @@ var TimeBoxOrthodox = (function () {
         this.theMoment = new Date();
         try {
             if (date != undefined) {
-                var valDate = this.validate(date);
+                let valDate = this.validate(date);
                 this.theMoment = new Date(valDate);
                 this.formatsEaster.moment = this.theMoment;
-                console.log("\u0423\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u043D\u0430\u044F \u0434\u0430\u0442\u0430: " + this.formatsEaster.moment.toString().slice(0, 15));
+                console.log(`Установленная дата: ${this.formatsEaster.moment.toString().slice(0, 15)}`);
             }
             else {
                 this.formatsEaster.moment = this.theMoment;
-                console.log("\u0423\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u043D\u0430\u044F \u0434\u0430\u0442\u0430: " + this.formatsEaster.moment.toString().slice(0, 15));
+                console.log(`Установленная дата: ${this.formatsEaster.moment.toString().slice(0, 15)}`);
             }
         }
         catch (e) {
@@ -97,8 +97,8 @@ var TimeBoxOrthodox = (function () {
             console.log('Продолжаем … полет по коду !!!');
         }
     }
-    TimeBoxOrthodox.prototype.glasSedmici = function () {
-        var gls = this.formatsEaster.currentWeek % 8 - 1;
+    glasSedmici() {
+        let gls = this.formatsEaster.currentWeek % 8 - 1;
         if (gls > 0) {
             this.formatsEaster.glas = gls;
         }
@@ -108,30 +108,31 @@ var TimeBoxOrthodox = (function () {
         else {
             this.formatsEaster.glass = 8;
         }
-        return console.log("\u0414\u043B\u044F \u0442\u0435\u043A\u0443\u0449\u0435\u0439 " + this.formatsEaster.currentWeek + " \u0441\u0435\u0434\u043C\u0438\u0446\u044B \u0443\u0441\u0430\u0442\u043D\u043E\u0432\u043B\u0435\u043D \u0433\u043B\u0430\u0441 \u2013 " + this.formatsEaster.glas);
-    };
-    TimeBoxOrthodox.prototype.validate = function (userdate) {
-        var valYear = 0;
+        return `Для текущей ${this.formatsEaster.currentWeek} седмицы установлен глас – ${this.formatsEaster.glas}`;
+    }
+    validate(userdate) {
+        let valYear = 0;
         valYear = Number(userdate.slice(0, 4));
         if (userdate.length > 3 && valYear >= 2016 && valYear <= 2100) {
-            document.querySelectorAll('.colorBlock').forEach(function (n) { return n.classList.remove('colorBlock'); });
-            document.querySelectorAll('.seeddayON').forEach(function (n) { return n.classList.replace('seeddayON', 'seedday'); });
-            document.getElementById('zachala').innerHTML = "\u0417\u0430\u0447\u0430\u043B\u0430 \u0432\u0441\u0435\u0433\u043E \u043B\u0435\u0442\u0430 \u043F\u043E \u041F\u0430\u0441\u0445\u0435 \u0432 \u0433\u043E\u0434 <span class=\"yearBG\">" + valYear + " </span>";
+            document.querySelectorAll('.colorBlock').forEach(n => n.classList.remove('colorBlock'));
+            document.querySelectorAll('.seeddayON').forEach(n => n.classList.replace('seeddayON', 'seedday'));
+            document.getElementById('zachala').innerHTML = `Зачала всего лета по Пасхе в год <span class="yearBG">${valYear} </span>`;
             document.location.replace('#');
-            return userdate + "/" + (this.theMoment.getMonth() + 1) + "/" + this.theMoment.getDate();
+            return `${userdate}/${this.theMoment.getMonth() + 1}/${this.theMoment.getDate()}`;
         }
         else {
-            throw valYear + " ; \u0412\u0432\u0435\u0434\u0435\u043D\u043D\u043E\u0435 \u0432\u0430\u043C\u0438: / " + userdate + " / \u043D\u0435 \u043F\u043E\u0434\u0445\u043E\u0434\u0438\u0442.\n                  \u041F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u0432\u0432\u0435\u0441\u0442\u0438 \u0442\u043E\u043B\u044C\u043A\u043E \u043D\u043E\u043C\u0435\u0440 \u0433\u043E\u0434\u0430 \u2013 \"2040\"";
+            throw `${valYear} ; Введенное вами: / ${userdate} / не подходит.
+                  Попробуйте ввести только номер года – "2040"`;
         }
-    };
-    TimeBoxOrthodox.prototype.calculateDatesEaster = function () {
+    }
+    calculateDatesEaster() {
         this.formatsEaster.momentMLS = this.theMoment.getTime();
         this.formatsEaster.dayNum = this.theMoment.getDay() + 1;
         this.formatsEaster.momentYear = this.formatsEaster.moment.getFullYear();
-        this.formatsEaster.easter = this.formatsEaster.momentYear + "/" + this.paskhalia[this.formatsEaster.momentYear][0] + "/" + this.paskhalia[this.formatsEaster.momentYear][1];
-        var ddf = new Date(this.formatsEaster.easter);
+        this.formatsEaster.easter = `${this.formatsEaster.momentYear}/${this.paskhalia[this.formatsEaster.momentYear][0]}/${this.paskhalia[this.formatsEaster.momentYear][1]}`;
+        let ddf = new Date(this.formatsEaster.easter);
         this.formatsEaster.easterMLS = ddf.getTime();
-        var easter = new Date(this.formatsEaster.easterMLS);
+        let easter = new Date(this.formatsEaster.easterMLS);
         this.keySystemYear = (this.formatsEaster.momentMLS - this.formatsEaster.easterMLS) / CONST_MLS_DAY;
         if (this.keySystemYear > 0) {
             var next = this.formatsEaster.momentYear + 1 + "/" + this.paskhalia[this.formatsEaster.momentYear + 1][0] + "/" + this.paskhalia[this.formatsEaster.momentYear + 1][1];
@@ -149,99 +150,101 @@ var TimeBoxOrthodox = (function () {
         }
         this.mif();
         return "Мир всем!";
-    };
-    TimeBoxOrthodox.prototype.mif = function () {
+    }
+    mif() {
         this.formatsEaster.mifMLS = this.formatsEaster.nextEasterMLS - CONST_MLS_MiF;
         this.formatsEaster.mif = new Date(this.formatsEaster.mifMLS).toString().slice(0, 15);
-        return "\u0414\u0435\u043D\u044C \u043C\u044B\u0442\u0430\u0440\u044F \u0438 \u0444\u0430\u0440\u0438\u0441\u0435\u044F \u043F\u0440\u0438\u0445\u043E\u0434\u0438\u0442\u0441\u044F \u043D\u0430 " + this.formatsEaster.mif;
-    };
-    TimeBoxOrthodox.prototype.voznesnieGospodne = function () {
+        return `День мытаря и фарисея приходится на ${this.formatsEaster.mif}`;
+    }
+    voznesnieGospodne() {
         this.formatsEaster.voznesenieMLS = this.formatsEaster.lastEasterMLS + (CONST_MLS_DAY * 39);
         this.formatsEaster.voznesenie = new Date(this.formatsEaster.voznesenieMLS).toString().slice(0, 15);
-        return "\u0412\u043E\u0437\u043D\u0435\u0441\u0435\u043D\u0438\u0435 \u043F\u0440\u0438\u0445\u043E\u0434\u0438\u0442\u0441\u044F \u043D\u0430 " + this.formatsEaster.voznesenie;
-    };
-    TimeBoxOrthodox.prototype.pyatDesyatnica = function () {
+        return `Вознесение приходится на ${this.formatsEaster.voznesenie}`;
+    }
+    pyatDesyatnica() {
         this.formatsEaster.pyatiDesyatnicaMLS = this.formatsEaster.lastEasterMLS + (CONST_MLS_DAY * 49);
         this.formatsEaster.pyatiDesyatnica = new Date(this.formatsEaster.pyatiDesyatnicaMLS).toString().slice(0, 15);
-        return "\u041F\u044F\u0442\u044C\u0434\u0435\u0441\u044F\u0442\u043D\u0438\u0446\u0430 \u043F\u0440\u0438\u0445\u043E\u0434\u0438\u0442\u0441\u044F \u043D\u0430 " + this.formatsEaster.pyatiDesyatnica;
-    };
-    TimeBoxOrthodox.prototype.calculateAllWeks = function () {
+        return `Пятьдесятница приходится на ${this.formatsEaster.pyatiDesyatnica}`;
+    }
+    calculateAllWeks() {
         this.formatsEaster.dayName = this.arayDays[this.theMoment.getDay()];
         this.formatsEaster.allWeeks = parseInt((this.formatsEaster.nextEasterMLS - this.formatsEaster.lastEasterMLS)
             / CONST_MLS_DAY / 7 + "", 10);
         this.formatsEaster.promWeeks = this.formatsEaster.allWeeks - 50;
-        var sss = this.formatsEaster.currentWeek = parseInt((this.formatsEaster.momentMLS - this.formatsEaster.lastEasterMLS)
+        let sss = this.formatsEaster.currentWeek = parseInt((this.formatsEaster.momentMLS - this.formatsEaster.lastEasterMLS)
             / CONST_MLS_DAY / 7 + "", 10) + 1;
         this.formatsEaster.beginningLentMLS = parseInt((this.formatsEaster.nextEasterMLS - CONST_MLS_DAY * 48) + "", 10);
         this.formatsEaster.beginningLent = new Date(this.formatsEaster.beginningLentMLS).toString().slice(0, 15);
         this.formatsEaster.currentWeekStupka = sss - this.formatsEaster.promWeeks;
-        var zero = parseInt((this.formatsEaster.nextEasterMLS - this.formatsEaster.momentMLS) / CONST_MLS_DAY + "", 10);
-        var today = "Сегодня";
+        let zero = parseInt((this.formatsEaster.nextEasterMLS - this.formatsEaster.momentMLS) / CONST_MLS_DAY + "", 10);
+        let today = "Сегодня";
         if (zero == 0) {
             this.formatsEaster.ostatok = "СЕГОДНЯ ПАСХА ХРИСТОВА";
             today = "Сегодня";
-            console.log("\u0421\u0435\u0433\u043E\u0434\u043D\u044F \u0421\u0432\u0435\u0442\u043B\u043E\u0435 \u0425\u0440\u0438\u0441\u0442\u043E\u0432\u043E \u0412\u043E\u0441\u043A\u0440\u0435\u0441\u0435\u043D\u0438\u0435. \u0425\u0440\u0438\u0441\u0442\u043E\u0441 \u0412\u043E\u0441\u043A\u0440\u0435\u0441\u0435!");
+            console.log(`Сегодня Светлое Христово Воскресение. Христос Воскресе!`);
         }
         else {
             this.formatsEaster.ostatok = zero;
             today = "Остаток дней до Пасхи";
         }
-        return today + " \u2013 " + this.formatsEaster.ostatok + " \n \u0411\u043E\u0433\u043E\u0441\u043B\u0443\u0436\u0435\u0431\u043D\u044B\u0445 \u0441\u0435\u0434\u043C\u0438\u0446 - " + this.formatsEaster.allWeeks + "\n \u041F\u0440\u043E\u043C\u0435\u0436\u0443\u0442\u043E\u0447\u043D\u044B\u0445 \u0441\u0435\u0434\u043C\u0438\u0446 - " + this.formatsEaster.promWeeks + " \n \u0422\u0435\u043A\u0443\u0449\u0430\u044F \u0441\u0435\u0434\u043C\u0438\u0446\u0430 - " + this.formatsEaster.currentWeek + "\n \u0421\u0435\u0434\u043C\u0438\u0446\u0430 \u043F\u043E \u041F\u044F\u0442\u044C\u0434\u0435\u0441\u044F\u0442\u043D\u0438\u0446\u0435 - " + (this.formatsEaster.currentWeek - 7);
-    };
-    TimeBoxOrthodox.prototype.vozdviggenieKresta = function () {
-        var stupka = 0;
-        var voz = "";
-        var sliceLastEaster = this.formatsEaster.lastEaster;
-        var sliceLastEaster2 = sliceLastEaster.slice(0, 4);
+        return `${today} – ${this.formatsEaster.ostatok} \n Богослужебных седмиц - ${this.formatsEaster.allWeeks}\n Промежуточных седмиц - ${this.formatsEaster.promWeeks} \n Текущая седмица - ${this.formatsEaster.currentWeek}\n Седмица по Пятьдесятнице - ${this.formatsEaster.currentWeek - 7}`;
+    }
+    vozdviggenieKresta() {
+        let stupka = 0;
+        let voz = "";
+        let sliceLastEaster = this.formatsEaster.lastEaster;
+        let sliceLastEaster2 = sliceLastEaster.slice(0, 4);
         this.formatsEaster.vozdviggenie = new Date(sliceLastEaster2 + "/9/27");
         this.formatsEaster.vozdviggenieMLS = this.formatsEaster.vozdviggenie.getTime();
-        var kolichestvoSedmicPoPyatidesyatnice = (this.formatsEaster.vozdviggenieMLS - this.formatsEaster.lastEasterMLS) / CONST_MLS_DAY / 7 - 6;
-        console.log("\u0421\u0435\u0434\u043C\u0438\u0446\u0430 \u043D\u0430 \u0412\u043E\u0437\u0434\u0432\u0438\u0436\u0435\u043D\u0438\u0435 - " + Math.floor(kolichestvoSedmicPoPyatidesyatnice));
+        let kolichestvoSedmicPoPyatidesyatnice = (this.formatsEaster.vozdviggenieMLS - this.formatsEaster.lastEasterMLS) / CONST_MLS_DAY / 7 - 6;
+        console.log(`Седмица на Воздвижение - ${Math.floor(kolichestvoSedmicPoPyatidesyatnice)}`);
         stupka = parseInt((kolichestvoSedmicPoPyatidesyatnice - 17).toString(), 10);
         if (stupka > 0 && this.formatsEaster.currentWeek < 27) {
-            console.log("\u041E\u0442\u0441\u0442\u0443\u043F\u043A\u0430 \u0441\u043E\u0441\u0442\u0430\u0432\u043B\u044F\u0435\u0442 - " + stupka + " \u0441\u0435\u0434\u043C\u0438\u0446\u044B.");
+            console.log(`Отступка составляет - ${stupka} седмицы.`);
             this.formatsEaster.vozStupka = stupka - 1;
-            voz = "\u0412\u043E\u0437\u0434\u0432\u0438\u0436\u0435\u043D\u0438\u0435 \u043F\u0440\u0438\u0445\u043E\u0434\u0438\u0442\u0441\u044F \u043D\u0430 " + kolichestvoSedmicPoPyatidesyatnice + " \u0441\u0435\u0434\u043C\u0438\u0446\u0443.\n                        \n\u041E\u0442\u0441\u0442\u0443\u043F\u043A\u0430 \u0441\u043E\u0441\u0442\u0430\u0432\u043B\u044F\u0435\u0442 - " + stupka + " \u0441\u0435\u0434\u043C\u0438\u0446\u044B.";
+            voz = `Воздвижение приходится на ${kolichestvoSedmicPoPyatidesyatnice} седмицу.
+                        \nОтступка составляет - ${stupka} седмицы.`;
         }
         else if (stupka < 0 && this.formatsEaster.currentWeek <= 26) {
             this.formatsEaster.vozStupka = stupka - 1;
-            voz = "\u0412\u043E\u0437\u0434\u0432\u0438\u0436\u0435\u043D\u0438\u0435 \u043F\u0440\u0438\u0445\u043E\u0434\u0438\u0442\u0441\u044F \u043D\u0430 " + kolichestvoSedmicPoPyatidesyatnice + " \u0441\u0435\u0434\u043C\u0438\u0446\u0443.\n                        \n\u041F\u0440\u0435\u0441\u0442\u0443\u043F\u043A\u0430 \u0441\u043E\u0441\u0442\u0430\u0432\u043B\u044F\u0435\u0442 -  " + stupka + " \u0441\u0435\u0434\u043C\u0438\u0446\u044B.";
+            voz = `Воздвижение приходится на ${kolichestvoSedmicPoPyatidesyatnice} седмицу.
+                        \nПреступка составляет -  ${stupka} седмицы.`;
         }
         else {
-            voz = "\u0412\u043E\u0437\u0434\u0432\u0438\u0436\u0435\u043D\u0438\u0435 \u043F\u0440\u0438\u0445\u043E\u0434\u0438\u0442\u0441\u044F \u043D\u0430 \u0441\u0435\u0434\u043C\u0438\u0446\u0443 - " + kolichestvoSedmicPoPyatidesyatnice + ".\n \u041E\u0442\u0441\u0442\u0443\u043F\u043E\u043A \u043D\u0435\u0442.";
+            voz = `Воздвижение приходится на седмицу - ${kolichestvoSedmicPoPyatidesyatnice}.\n Отступок нет.`;
         }
         return voz;
-    };
-    TimeBoxOrthodox.prototype.vhodGospoden = function () {
+    }
+    vhodGospoden() {
         this.formatsEaster.vhodMLS = this.formatsEaster.nextEasterMLS - CONST_MLS_DAY * 7;
         this.formatsEaster.vhod = new Date(this.formatsEaster.vhodMLS).toString().slice(0, 15);
-        return "\u0412\u0445\u043E\u0434 \u0413\u043E\u0441\u043F\u043E\u0434\u0435\u043D\u044C \u0432\u043E \u0418\u0435\u0440\u0443\u0441\u0430\u043B\u0438\u043C: " + this.formatsEaster.vhod;
-    };
-    TimeBoxOrthodox.prototype.calculateLinksAll = function () {
-        var ccc = 0;
+        return `Вход Господень во Иерусалим: ${this.formatsEaster.vhod}`;
+    }
+    calculateLinksAll() {
+        let ccc = 0;
         this.formatsLinks.linkToAprakosPage = this.formatsEaster.currentWeek + '/' + this.formatsEaster.dayNum + '.html';
         if (this.formatsEaster.currentWeek > 40 && this.formatsEaster.promWeeks > 0) {
             ccc = this.formatsEaster.currentWeekStupka;
             this.formatsLinks.linkToAprakosPage = ccc + '/' + this.formatsEaster.dayNum + '.html';
-            this.formatsLinks.linkToElementID2 = "<a href=\"#seed" + ccc + "\"  title=\"\u0421\u0435\u0433\u043E\u0434\u043D\u044F : " + this.formatsEaster.dayName + "\">" + (this.formatsEaster.promWeeks + ccc) + "</a>";
-            this.formatsLinks.linkToElementID4 = "<a href=\"#seed" + ccc + "\"  title=\"\u0421\u0435\u0433\u043E\u0434\u043D\u044F : " + this.formatsEaster.dayName + "\">" + (this.formatsEaster.promWeeks + ccc - 7) + "</a>";
+            this.formatsLinks.linkToElementID2 = `<a href="#seed${ccc}"  title="Сегодня : ${this.formatsEaster.dayName}">${this.formatsEaster.promWeeks + ccc}</a>`;
+            this.formatsLinks.linkToElementID4 = `<a href="#seed${ccc}"  title="Сегодня : ${this.formatsEaster.dayName}">${this.formatsEaster.promWeeks + ccc - 7}</a>`;
         }
         else if (this.formatsEaster.currentWeek > 21 && this.formatsEaster.currentWeek < 27) {
             ccc = this.formatsEaster.currentWeek - this.formatsEaster.vozStupka;
             this.formatsLinks.linkToAprakosPage = ccc + '/' + this.formatsEaster.dayNum + '.html';
-            this.formatsLinks.linkToElementID2 = "<a href=\"#seed" + ccc + "\"  title=\"\u0421\u0435\u0433\u043E\u0434\u043D\u044F : " + this.formatsEaster.dayName + "\">" + this.formatsEaster.currentWeek + "</a>";
-            this.formatsLinks.linkToElementID4 = "<a href=\"#seed" + ccc + "\"  title=\"\u0421\u0435\u0433\u043E\u0434\u043D\u044F : " + this.formatsEaster.dayName + "\">" + (this.formatsEaster.currentWeek - 7) + "</a>";
+            this.formatsLinks.linkToElementID2 = `<a href="#seed${ccc}"  title="Сегодня : ${this.formatsEaster.dayName}">${this.formatsEaster.currentWeek}</a>`;
+            this.formatsLinks.linkToElementID4 = `<a href="#seed${ccc}"  title="Сегодня : ${this.formatsEaster.dayName}">${this.formatsEaster.currentWeek - 7}</a>`;
         }
         else {
-            var ccc_1 = this.formatsEaster.currentWeek;
-            this.formatsLinks.linkToElementID2 = "<a href=\"#seed" + ccc_1 + "\"  title=\"\u0421\u0435\u0433\u043E\u0434\u043D\u044F : " + this.formatsEaster.dayName + "\">" + ccc_1 + "</a>";
-            this.formatsLinks.linkToElementID4 = "<a href=\"#seed" + ccc_1 + "\"  title=\"\u0421\u0435\u0433\u043E\u0434\u043D\u044F : " + this.formatsEaster.dayName + "\">" + (ccc_1 - 7) + "</a>";
+            let ccc = this.formatsEaster.currentWeek;
+            this.formatsLinks.linkToElementID2 = `<a href="#seed${ccc}"  title="Сегодня : ${this.formatsEaster.dayName}">${ccc}</a>`;
+            this.formatsLinks.linkToElementID4 = `<a href="#seed${ccc}"  title="Сегодня : ${this.formatsEaster.dayName}">${ccc - 7}</a>`;
         }
-    };
-    TimeBoxOrthodox.prototype.insertElements = function () {
+    }
+    insertElements() {
         this.glasSedmici();
-        document.getElementById('date5').innerHTML = "\u0413\u043B\u0430\u0441 \u0441\u0435\u0434\u043C\u0438\u0446\u044B - " + this.formatsEaster.glas;
-        var description = "Метод класса. Вставляет элементы DOM.";
+        document.getElementById('date5').innerHTML = `Глас седмицы - ${this.formatsEaster.glas}`;
+        let description = "Метод класса. Вставляет элементы DOM.";
         if (this.formatsEaster.currentWeekStupka < 51) {
             document.getElementById('date2').innerHTML = this.formatsLinks.linkToElementID2;
             document.getElementById('date4').innerHTML = this.formatsLinks.linkToElementID4;
@@ -263,7 +266,7 @@ var TimeBoxOrthodox = (function () {
             document.getElementById('date5').remove();
         }
         var slb, vvv = "seed";
-        var seedday = "none";
+        let seedday = "none";
         if (this.formatsEaster.currentWeek > 40 && this.formatsEaster.ostatok > 70) {
             vvv = vvv + this.formatsEaster.currentWeekStupka;
             slb = " colorBlock promWeek";
@@ -293,7 +296,6 @@ var TimeBoxOrthodox = (function () {
         document.getElementById(seedday).className += 'ON';
         document.getElementById(vvv).className += slb;
         return description;
-    };
-    return TimeBoxOrthodox;
-}());
-var apr = new TimeBoxOrthodox();
+    }
+}
+let apr = new TimeBoxOrthodox();

@@ -2,7 +2,7 @@
 	"entryPoints": ["main/aprakos.ts"],
 	"out": "docs/generated",
 	"name": "Aprakos-TS",
-	"theme": "default",
-	"includes": "./docs/001.md"
+	"theme": "default"
+
 
       }
