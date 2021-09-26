@@ -7,14 +7,16 @@
  * 
  */
 
+let currentYearGRG: number = new Date().getFullYear()
 
-var massYearsCSL = {
+const massYearsCSL = {
 
     tschi: "¤",
     cifri: ['', 'а', "в", 'г', 'д', 'є', 's', 'з', 'и', 'f'],
     desyatki: ['', 'i', 'к', 'л', 'м', 'н', '…', 'o', 'п', 'ч'],
-    sotni: ['', 'p', 'с', 'т', 'у', 'f', 'х', 'p', 't', 'ц']
 
+    // FIXME: В шрифте отсутствует глиф числа 400 – у.
+    sotni: ['', 'р', 'с', 'т', 'u', 'f', 'х', 'p', 't', 'ц']
 
 }
 
@@ -22,33 +24,15 @@ function currentYearCSl() {
 
     let yearInsert = massYearsCSL.tschi
 
+    let tsch = massYearsCSL.tschi
 
-    let currentYearGRG: number = new Date().getFullYear()
+    let yearString = String(currentYearGRG)
 
-    
-    let yearString: string = String(currentYearGRG)
-    if(yearString.length == 3){
+    if (yearString.length == 3) {
 
         yearString = "0" + yearString
-        
-        }
-    
-    switch (yearString.length) {
-        case   3 :
-            yearString = "0" + yearString
-            break;
-            
-            
-        case 2:
-            yearString = "00" + yearString
+        tsch = ""
 
-        case 2:
-            yearString = "000" + yearString
-            
-            break;
-    
-        default:
-            break;
     }
 
 
@@ -84,7 +68,7 @@ function currentYearCSl() {
     // для годов второго десятка (10…19)
     if (Number(yearString.slice(2, 4)) < 20) {
 
-        yearInsert = massYearsCSL.tschi + massYearsCSL.cifri[tscha]
+        yearInsert = tsch + massYearsCSL.cifri[tscha]
             + massYearsCSL.sotni[sotnya]
             + massYearsCSL.cifri[edinica] + "7" + massYearsCSL.desyatki[desyatok]
 
@@ -95,3 +79,7 @@ function currentYearCSl() {
 
 
 document.getElementById('ystm-date')!.innerHTML = currentYearCSl()
+document.getElementById('ystm-date')!.setAttribute('title', `${currentYearGRG} год`)
+
+
+

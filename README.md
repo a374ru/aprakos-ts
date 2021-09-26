@@ -19,7 +19,7 @@
 ### <span style="color: #8F7161;">Для публикации же используются два web-ресурса  (сайта):
 
 1. Github Pages […смотри здесь](https://a374ru.github.io/aprakos-ts/)
-2. ReadTheDocs [… и здесь ](aprakos-ts.readthedocs.io)
+2. ReadTheDocs [… и здесь ]([aprakos-ts.readthedocs.io](https://aprakos-ts.readthedocs.io/ru/latest/))
    
 Такой способ документации показался нам более всего простым и спокойным. Прост в поддерживании и разворачивании совместно с проектом. 
 Просто коментируем свой код в исходниках и добавляем необходимые файлы `.md` в папку `docs`.
