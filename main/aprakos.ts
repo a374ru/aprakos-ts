@@ -5,7 +5,7 @@ import "./date-csl.ts";
 
 // function a374ru() {}
 
-currentYearCSl()
+// currentYearCSl()
 
 /**
  * Православная Пасхалия есть основание для вычислений. 
@@ -545,6 +545,7 @@ class TimeBoxOrthodox implements Paskhalia {
 
                 this.formatsEaster.vozdviggenie = new Date(sliceLastEaster2 + "/9/27")
 
+                this.formatsEaster.mondayAfterVozdviggenie = this.formatsEaster.vozdviggenieMLS as number + (CONST_MLS_DAY * 7) == this.theMoment.getMilliseconds() ? "да": "нет"
                 
                 this.formatsEaster.vozdviggenieMLS = this.formatsEaster.vozdviggenie.getTime()
 
@@ -556,7 +557,7 @@ class TimeBoxOrthodox implements Paskhalia {
                 // Если `stupka` равна нулю, то отступки нет
                 stupka = parseInt((kolichestvoSedmicPoPyatidesyatnice - 17).toString(), 10)
 
-                if (stupka > 0 && this.formatsEaster.currentWeek as number < 27) {
+                if (stupka > 0 && this.formatsEaster.currentWeek as number < 27 ) {
                         // это отступка (- единица, это коррекция для седмицы в
                         // отличии от Недели)
 
@@ -618,7 +619,7 @@ class TimeBoxOrthodox implements Paskhalia {
                         this.formatsLinks.linkToElementID4 = `<a href="#seed${ccc}"  title="Сегодня : ${this.formatsEaster.dayName}">${this.formatsEaster.promWeeks as number + ccc - 7}</a>`
 
 
-                } else if (this.formatsEaster.currentWeek as number > 21 && this.formatsEaster.currentWeek as number < 27) {
+                } else if (this.formatsEaster.currentWeek as number > 21 && this.formatsEaster.currentWeek as number < 27 ) {
 
                         ccc = this.formatsEaster.currentWeek as number - (this.formatsEaster.vozStupka as number)
                         this.formatsLinks.linkToAprakosPage = ccc + '/' + this.formatsEaster.dayNum + '.html'
