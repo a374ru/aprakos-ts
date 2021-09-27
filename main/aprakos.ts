@@ -130,7 +130,7 @@ class TimeBoxOrthodox implements Paskhalia {
                  * Уточняет наступление данного дня.
                  */
                 mondayAfterVozdviggenie: undefined,
-                
+
                 /**
                  * Количество промежуточных седмиц (Богоявленская отступка).
         */
@@ -545,7 +545,6 @@ class TimeBoxOrthodox implements Paskhalia {
 
                 this.formatsEaster.vozdviggenie = new Date(sliceLastEaster2 + "/9/27")
 
-                
                 this.formatsEaster.vozdviggenieMLS = this.formatsEaster.vozdviggenie.getTime()
 
                 // В данной строке расчитывается количество седмиц от Недели Пятидесятницы до Недели Воздвижения Креста.
