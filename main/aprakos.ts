@@ -1,11 +1,6 @@
 // Во имя Отца и Сына и Святаго Духа. Аминь.
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-import "./date-csl.ts";
-
-// function a374ru() {}
-
-// currentYearCSl()
 
 /**
  * Православная Пасхалия есть основание для вычислений. 
@@ -127,10 +122,10 @@ class TimeBoxOrthodox implements Paskhalia {
 
                 /**
                  * Флаг первого понедельника после праздника Воздвижения Креста. Содержит значение строкового типа – `да` или `нет`.
-                 * Уточняет наступление данного дня.
+                 * Уточняет наступление данного дня, в который начинается Евангелие от Луки, зачало 10.
                  */
                 mondayAfterVozdviggenie: undefined,
-                
+
                 /**
                  * Количество промежуточных седмиц (Богоявленская отступка).
         */
@@ -304,16 +299,16 @@ class TimeBoxOrthodox implements Paskhalia {
         *
         */
 
-        constructor(date?: string) {
+        constructor(userYear?: string) {
 
                 this.theMoment = new Date()
 
                 try {
 
-                        if (date != undefined) {
+                        if (userYear != undefined) {
                                 // TODO: 434-2021-333 требуется валидация введенных параметров
 
-                                let valDate = this.validate(date)
+                                let valDate = this.validate(userYear)
 
                                 this.theMoment = new Date(valDate)
                                 this.formatsEaster.moment = this.theMoment
@@ -544,10 +539,22 @@ class TimeBoxOrthodox implements Paskhalia {
                 let sliceLastEaster2 = sliceLastEaster.slice(0, 4)
 
                 this.formatsEaster.vozdviggenie = new Date(sliceLastEaster2 + "/9/27")
-
-                this.formatsEaster.mondayAfterVozdviggenie = this.formatsEaster.vozdviggenieMLS as number + (CONST_MLS_DAY * 7) == this.theMoment.getMilliseconds() ? "да": "нет"
-                
                 this.formatsEaster.vozdviggenieMLS = this.formatsEaster.vozdviggenie.getTime()
+
+                // Определение даты первого Понедельника следующей седмицы по Воздвижении Креста Господня – 27 сентября текущего года.
+
+                let a = new Date(this.formatsEaster.vozdviggenieMLS)
+                let aaa = 1 + 7 - (a.getDay() % 7)
+                let updateTheDate = a.getDate() + aaa
+                a.setDate(updateTheDate);
+                this.formatsEaster.mondayAfterVozdviggenie = a
+
+
+
+                // this.formatsEaster.mondayAfterVozdviggenie = ("Oct 04" === Date().slice(4, 10) ? 1 : undefined)
+
+
+
 
                 // В данной строке расчитывается количество седмиц от Недели Пятидесятницы до Недели Воздвижения Креста.
                 // `- 6` в конце строки кода указывает на счет от Пятидесятницы.
@@ -557,7 +564,7 @@ class TimeBoxOrthodox implements Paskhalia {
                 // Если `stupka` равна нулю, то отступки нет
                 stupka = parseInt((kolichestvoSedmicPoPyatidesyatnice - 17).toString(), 10)
 
-                if (stupka > 0 && this.formatsEaster.currentWeek as number < 27 ) {
+                if (stupka > 0 && this.formatsEaster.currentWeek as number < 27) {
                         // это отступка (- единица, это коррекция для седмицы в
                         // отличии от Недели)
 
@@ -570,7 +577,7 @@ class TimeBoxOrthodox implements Paskhalia {
                 }
 
                 else
-                        if (stupka < 0 && this.formatsEaster.currentWeek as number <= 26) {
+                        if (stupka < 0 && this.formatsEaster.currentWeek as number <= 26 && this.formatsEaster.mondayAfterVozdviggenie) {
 
                                 // это преступка (+ единица, это коррекция для седмицы в
                                 // отличии от Недели)
@@ -619,8 +626,10 @@ class TimeBoxOrthodox implements Paskhalia {
                         this.formatsLinks.linkToElementID4 = `<a href="#seed${ccc}"  title="Сегодня : ${this.formatsEaster.dayName}">${this.formatsEaster.promWeeks as number + ccc - 7}</a>`
 
 
-                } else if (this.formatsEaster.currentWeek as number > 21 && this.formatsEaster.currentWeek as number < 27 ) {
+                } else if (
 
+                        this.formatsEaster.currentWeek as number > 21 && this.formatsEaster.currentWeek as number < 27 && this.formatsEaster.mondayAfterVozdviggenie) {
+                        // S:S Установить корректную ссылку !!! 3333
                         ccc = this.formatsEaster.currentWeek as number - (this.formatsEaster.vozStupka as number)
                         this.formatsLinks.linkToAprakosPage = ccc + '/' + this.formatsEaster.dayNum + '.html'
                         this.formatsLinks.linkToElementID2 = `<a href="#seed${ccc}"  title="Сегодня : ${this.formatsEaster.dayName}">${this.formatsEaster.currentWeek as number}</a>`
@@ -717,7 +726,9 @@ class TimeBoxOrthodox implements Paskhalia {
                         slb = " colorBlock";
                         seedday = "seedday-" + (this.formatsEaster.currentWeek as number - (this.formatsEaster.vozStupka as number)) + "-" + this.formatsEaster.dayNum;
 
-                } else if (this.formatsEaster.currentWeek as number >= 22 && this.formatsEaster.currentWeek as number <= 27 && this.formatsEaster.vozStupka as number < 0) {
+                }
+                // Условия ПРЕСТУПКИ, которые случаются при поздней Пасхе
+                else if (this.formatsEaster.currentWeek as number >= 22 && this.formatsEaster.currentWeek as number <= 27 && this.formatsEaster.vozStupka as number < 0 && this.formatsEaster.mondayAfterVozdviggenie) {
                         vvv = vvv + (this.formatsEaster.currentWeek as number - (this.formatsEaster.vozStupka as number));
                         slb = " colorBlock";
                         seedday = "seedday-" + (this.formatsEaster.currentWeek as number - (this.formatsEaster.vozStupka as number)) + "-" + this.formatsEaster.dayNum;
