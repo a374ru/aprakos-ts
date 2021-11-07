@@ -47,7 +47,7 @@ npx typedoc --option ../typedoc.json
 Здесь мы выполним сборку из папки скрипта и автоматически получим на выходе вложенную папку `docs` с документацией.
 
 ```zsh
-npx typedoc aprakos.ts
+npx typedoc 
 ```
 
 <br><br>
