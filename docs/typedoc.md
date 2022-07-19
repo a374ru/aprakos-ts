@@ -51,4 +51,4 @@ npx typedoc
 ```
 
 <br><br>
-![img](https://1.bp.blogspot.com/-wFaMiAHx-Y8/YG3EaVrCDFI/AAAAAAAAGZY/IYjO6zFHW5wjj4I_HrssCIShQpMxWMHlgCLcBGAsYHQ/s800/IMG_2094.PNG)
+![img](assets/images/the_end.png)

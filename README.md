@@ -2,7 +2,7 @@
 
 <br>
 
-![img](https://4.bp.blogspot.com/-YwQ8PL9Ml_g/Xc6ViMiv96I/AAAAAAAAEl0/21Cl0nIvEW0bAW5KQfAFevmbZUashMVDwCK4BGAYYCw/s1600/Group%2B2.png)
+![img](assets/images/apr_docs.png)
 
 <br>
 
@@ -16,16 +16,16 @@
 1. MkDocs, а точнее файл с таким именем `mkdocs.yml` для размещения на ресурсе `ReadTheDocs`.
 1. `TypeDoc` для генерации кодовой документации.
 
-### <span style="color: #8F7161;">Для публикации же используются два web-ресурса  (сайта):
+### <span style="color: #8F7161;">Для публикации же использовались два web-ресурса  (сайта):
 
 1. Github Pages […смотри здесь](https://a374ru.github.io/aprakos-ts/)
-2. ReadTheDocs [… и здесь ](https://aprakos-ts.readthedocs.io/ru/latest/)
+2. <s>ReadTheDocs [… и здесь ](https://aprakos-ts.readthedocs.io/ru/latest/)</s>
    
 Такой способ документации показался нам более всего простым и спокойным. Прост в поддерживании и разворачивании совместно с проектом. 
 Просто коментируем свой код в исходниках и добавляем необходимые файлы `.md` в папку `docs`.
 В конце генерируем документацию, коммитим и отправляем в `Github` и все остальное делают сами сервисы. Мы работаем исключительно в редактре кода.
 
 <br><br>
-![img](https://1.bp.blogspot.com/-wFaMiAHx-Y8/YG3EaVrCDFI/AAAAAAAAGZY/IYjO6zFHW5wjj4I_HrssCIShQpMxWMHlgCLcBGAsYHQ/s800/IMG_2094.PNG)
+![img](https://a374.ru/assets/img/the-end.png)
 
 

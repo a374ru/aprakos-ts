@@ -15,10 +15,10 @@ local: ru
 
 Опубликуйте материалы в `github`.
 
->3. Зайдите в аккаунт `ReadTheDocs` и подключите репозиторий с нашим файлом `mkdocs.yml`. Выполните сборку и просмотрите результат.
+>3. Зайдите в аккаунт `ReadTheDocs` и подключите репозиторий с вашим файлом `mkdocs.yml`. Выполните сборку и просмотрите результат.
 
 
-Более подробно можно ознакомится в документации на [сайте `docs.readthedocs.io`](https://docs.readthedocs.io/en/stable/intro/getting-started-with-mkdocs.html).
+Более подробно можно ознакомится в документации на [сайте `docs.readthedocs.io`](http://docs.readthedocs.io/en/stable/intro/getting-started-with-mkdocs.html).
 
-![img](https://1.bp.blogspot.com/-hOxN5KX2KfY/YPplNP_w6xI/AAAAAAAAGz0/nNxSLwD5lnQhvFnce_DzmIoSRWyY9A3QACLcBGAsYHQ/s800/theend-beats.png)
+![img](http://1.bp.blogspot.com/-hOxN5KX2KfY/YPplNP_w6xI/AAAAAAAAGz0/nNxSLwD5lnQhvFnce_DzmIoSRWyY9A3QACLcBGAsYHQ/s800/theend-beats.png)
 
