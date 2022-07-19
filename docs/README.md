@@ -2,7 +2,7 @@
 
 <br>
 
-![img](https://a374.ru/assets/img/apr_docs.png)
+![img](assets/img/apr_docs.png)
 
 <br>
 
