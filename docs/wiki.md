@@ -19,4 +19,4 @@ git push https://github.com/LOGIN/PROJECT-NAME.wiki.git
 ```
 <br>
 
-![img](http://1.bp.blogspot.com/-hOxN5KX2KfY/YPplNP_w6xI/AAAAAAAAGz0/nNxSLwD5lnQhvFnce_DzmIoSRWyY9A3QACLcBGAsYHQ/s800/theend-beats.png)
+![img](assets/img/the_end.png)

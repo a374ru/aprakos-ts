@@ -51,4 +51,4 @@ npx typedoc
 ```
 
 <br><br>
-![img](assets/images/the_end.png)
+![img](assets/img/the_end.png)
