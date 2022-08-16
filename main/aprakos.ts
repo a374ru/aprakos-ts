@@ -471,7 +471,7 @@ class TimeBoxOrthodox implements Paskhalia {
 
         /**
          * Высчитывает  все что связано с седмицами.
-         * Заполняет `массивformatsEaster` вычисленными данными.
+         * Заполняет массив `formatsEaster` вычисленными данными.
          * Возвращает данные по седмицам (результаты вычислений).
          */
         calculateAllWeks(): string {
