@@ -2,7 +2,7 @@
 
 <br>
 
-![img](https://a374.ru/assets/img/apr_docs.png)
+![img](https://apr.a374.ru/assets/img/apr_docs.png)
 
 <br>
 
@@ -26,6 +26,6 @@
 В конце генерируем документацию, коммитим и отправляем в `Github` и все остальное делают сами сервисы. Мы работаем исключительно в редактре кода.
 
 <br><br>
-![img](https://a374.ru/assets/img/the_end.png)
+![img](https://apr.a374.ru/assets/img/the_end.png)
 
 
