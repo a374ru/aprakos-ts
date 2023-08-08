@@ -1,6 +1,7 @@
 // Во имя Отца и Сына и Святаго Духа. Аминь.
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+//вторник,  8 августа 2023 г. 15:29:35 (MSK)
 
 /**
  * Православная Пасхалия есть основание для вычислений. 
@@ -627,8 +628,8 @@ class TimeBoxOrthodox implements Paskhalia {
                         ccc = this.formatsEaster.currentWeekStupka as number
                         // TODO: // Требуется откорректировать ссылку с учётом отступки.
                         this.formatsLinks.linkToAprakosPage = ccc + '/' + this.formatsEaster.dayNum + '.html'
-                        this.formatsLinks.linkToElementID2 = `<a href="#seed${ccc}"  title="Сегодня : ${this.formatsEaster.dayName}">${this.formatsEaster.promWeeks as number + ccc}</a>`
-                        this.formatsLinks.linkToElementID4 = `<a href="#seed${ccc}"  title="Сегодня : ${this.formatsEaster.dayName}">${this.formatsEaster.promWeeks as number + ccc - 7}</a>`
+                        this.formatsLinks.linkToElementID2 = `<a href="#seedday-${ccc - 1}-7"  title="Сегодня : ${this.formatsEaster.dayName}">${this.formatsEaster.promWeeks as number + ccc}</a>`
+                        this.formatsLinks.linkToElementID4 = `<a href="#seedday-${ccc - 1}-7"  title="Сегодня : ${this.formatsEaster.dayName}">${this.formatsEaster.promWeeks as number + ccc - 7}</a>`
 
 
                 } else if (
@@ -637,14 +638,14 @@ class TimeBoxOrthodox implements Paskhalia {
                         // S:S Установить корректную ссылку на зачало в стволе!!! 555
                         ccc = this.formatsEaster.currentWeek as number - (this.formatsEaster.vozStupka as number)
                         this.formatsLinks.linkToAprakosPage = ccc + '/' + this.formatsEaster.dayNum + '.html'
-                        this.formatsLinks.linkToElementID2 = `<a href="#seed${ccc}"  title="Сегодня : ${this.formatsEaster.dayName}">${this.formatsEaster.currentWeek as number}</a>`
-                        this.formatsLinks.linkToElementID4 = `<a href="#seed${ccc}"  title="Сегодня : ${this.formatsEaster.dayName}">${this.formatsEaster.currentWeek as number - 7}</a>`
+                        this.formatsLinks.linkToElementID2 = `<a href="#seedday-${ccc - 1}-7"  title="Сегодня : ${this.formatsEaster.dayName}">${this.formatsEaster.currentWeek as number}</a>`
+                        this.formatsLinks.linkToElementID4 = `<a href="#seedday-${ccc - 1}-7"  title="Сегодня : ${this.formatsEaster.dayName}">${this.formatsEaster.currentWeek as number - 7}</a>`
 
                 } else {
 
                         let ccc = this.formatsEaster.currentWeek as number
-                        this.formatsLinks.linkToElementID2 = `<a href="#seed${ccc}"  title="Сегодня : ${this.formatsEaster.dayName}">${ccc}</a>`
-                        this.formatsLinks.linkToElementID4 = `<a href="#seed${ccc}"  title="Сегодня : ${this.formatsEaster.dayName}">${ccc - 7}</a>`
+                        this.formatsLinks.linkToElementID2 = `<a href="#seedday-${ccc - 1}-7"  title="Сегодня : ${this.formatsEaster.dayName}">${ccc}</a>`
+                        this.formatsLinks.linkToElementID4 = `<a href="#seedday-${ccc - 1}-7"  title="Сегодня : ${this.formatsEaster.dayName}">${ccc - 7}</a>`
 
                 }
         }
@@ -762,6 +763,24 @@ class TimeBoxOrthodox implements Paskhalia {
 
         }
 
+        /**
+     * Код ссылки по якорю
+     */
+        linkToID() {
+
+
+                let anc = document.location.hash.slice(1);
+                let pageName = document.location.pathname.split('/').lastIndexOf("stvol.html");
+
+                if (anc != undefined && pageName == -1) {
+                        document.getElementById(anc)!.setAttribute('style', 'color: #a55858; background-color: #f4b5ff36; padding: 0px 0.4em 0px; border-radius: 7px;');
+
+                        return 'Элемент id в составе URL: #' + anc;
+                }
+
+                return null;
+        }
+
 } // end class
 
 /**
@@ -774,4 +793,5 @@ class TimeBoxOrthodox implements Paskhalia {
  */
 // 
 let apr = new TimeBoxOrthodox()
+apr.linkToID()
 

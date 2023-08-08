@@ -238,19 +238,19 @@ class TimeBoxOrthodox {
         if (this.formatsEaster.currentWeek > 40 && this.formatsEaster.promWeeks > 0) {
             ccc = this.formatsEaster.currentWeekStupka;
             this.formatsLinks.linkToAprakosPage = ccc + '/' + this.formatsEaster.dayNum + '.html';
-            this.formatsLinks.linkToElementID2 = `<a href="#seed${ccc}"  title="Сегодня : ${this.formatsEaster.dayName}">${this.formatsEaster.promWeeks + ccc}</a>`;
-            this.formatsLinks.linkToElementID4 = `<a href="#seed${ccc}"  title="Сегодня : ${this.formatsEaster.dayName}">${this.formatsEaster.promWeeks + ccc - 7}</a>`;
+            this.formatsLinks.linkToElementID2 = `<a href="#seedday-${ccc - 1}-7"  title="Сегодня : ${this.formatsEaster.dayName}">${this.formatsEaster.promWeeks + ccc}</a>`;
+            this.formatsLinks.linkToElementID4 = `<a href="#seedday-${ccc - 1}-7"  title="Сегодня : ${this.formatsEaster.dayName}">${this.formatsEaster.promWeeks + ccc - 7}</a>`;
         }
         else if (this.formatsEaster.currentWeek > 21 && this.formatsEaster.currentWeek < 27 && this.formatsEaster.mondayAfterVozdviggenie) {
             ccc = this.formatsEaster.currentWeek - this.formatsEaster.vozStupka;
             this.formatsLinks.linkToAprakosPage = ccc + '/' + this.formatsEaster.dayNum + '.html';
-            this.formatsLinks.linkToElementID2 = `<a href="#seed${ccc}"  title="Сегодня : ${this.formatsEaster.dayName}">${this.formatsEaster.currentWeek}</a>`;
-            this.formatsLinks.linkToElementID4 = `<a href="#seed${ccc}"  title="Сегодня : ${this.formatsEaster.dayName}">${this.formatsEaster.currentWeek - 7}</a>`;
+            this.formatsLinks.linkToElementID2 = `<a href="#seedday-${ccc - 1}-7"  title="Сегодня : ${this.formatsEaster.dayName}">${this.formatsEaster.currentWeek}</a>`;
+            this.formatsLinks.linkToElementID4 = `<a href="#seedday-${ccc - 1}-7"  title="Сегодня : ${this.formatsEaster.dayName}">${this.formatsEaster.currentWeek - 7}</a>`;
         }
         else {
             let ccc = this.formatsEaster.currentWeek;
-            this.formatsLinks.linkToElementID2 = `<a href="#seed${ccc}"  title="Сегодня : ${this.formatsEaster.dayName}">${ccc}</a>`;
-            this.formatsLinks.linkToElementID4 = `<a href="#seed${ccc}"  title="Сегодня : ${this.formatsEaster.dayName}">${ccc - 7}</a>`;
+            this.formatsLinks.linkToElementID2 = `<a href="#seedday-${ccc - 1}-7"  title="Сегодня : ${this.formatsEaster.dayName}">${ccc}</a>`;
+            this.formatsLinks.linkToElementID4 = `<a href="#seedday-${ccc - 1}-7"  title="Сегодня : ${this.formatsEaster.dayName}">${ccc - 7}</a>`;
         }
     }
     insertElements() {
@@ -309,5 +309,15 @@ class TimeBoxOrthodox {
         document.getElementById(vvv).className += slb;
         return description;
     }
+    linkToID() {
+        let anc = document.location.hash.slice(1);
+        let pageName = document.location.pathname.split('/').lastIndexOf("stvol.html");
+        if (anc != undefined && pageName == -1) {
+            document.getElementById(anc).setAttribute('style', 'color: #a55858; background-color: #f4b5ff36; padding: 0px 0.4em 0px; border-radius: 7px;');
+            return 'Элемент id в составе URL: #' + anc;
+        }
+        return null;
+    }
 }
 let apr = new TimeBoxOrthodox();
+apr.linkToID();
