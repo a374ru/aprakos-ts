@@ -333,6 +333,8 @@ class TimeBoxOrthodox implements Paskhalia {
                 this.calculateLinksAll()
                 this.voznesnieGospodne()
                 this.pyatDesyatnica()
+                // this.replaceDataTooltip()
+                this.linkToID()
 
                 try {
                         this.insertElements()
@@ -764,16 +766,23 @@ class TimeBoxOrthodox implements Paskhalia {
         }
 
         /**
-     * Код ссылки по якорю
-     */
+        * Код ссылки по якорю
+        */
         linkToID() {
 
 
                 let anc = document.location.hash.slice(1);
                 let pageName = document.location.pathname.split('/').lastIndexOf("stvol.html");
 
-                if (anc != undefined && pageName == -1) {
+                if (anc != "" && pageName == -1) {
+                        try {
                         document.getElementById(anc)!.setAttribute('style', 'color: #a55858; background-color: #f4b5ff36; padding: 0px 0.4em 0px; border-radius: 7px;');
+
+                        } catch (error) {
+                                console.log(error)
+                                anc = " …не найден."
+
+                        }
 
                         return 'Элемент id в составе URL: #' + anc;
                 }
@@ -781,6 +790,43 @@ class TimeBoxOrthodox implements Paskhalia {
                 return null;
         }
 
+
+
+        normColor = ""
+        titleColor = "#888888"
+
+        /**
+        * Метод менят местами контент между тегами. 
+        * Всплывающая посказка заменяет подсказываемое.
+        *
+         */
+        replaceDataTooltip() {
+
+                [this.normColor, this.titleColor] = [this.titleColor, this.normColor];
+
+                const elems: HTMLAllCollection | any = document.querySelectorAll(".tooltip");
+
+                elems.forEach((element: { addEventListener: (arg0: string, arg1: () => void) => void; getInnerHTML: () => any; getAttribute: (arg0: string) => any; innerHTML: any; setAttribute: (arg0: string, arg1: any) => void; style: { color: string } }) => {
+
+                        element.addEventListener('click', () => {
+                                console.log("=-=-=-=-=-=-");
+                                let norm = element.getInnerHTML()
+                                let dataToolTip = element.getAttribute('data-tooltip')
+                                element.innerHTML = dataToolTip
+                                console.log(norm + " – " + dataToolTip)
+                                element.setAttribute('data-tooltip', norm)
+                                element.style.color = this.normColor;
+
+                        })
+
+                        // setTimeout(() => {
+                        //     elem.innerHTML = norm;
+                        //     elem.setAttribute('data-title', dataTitle);
+                        //     elem.style.color = "";
+                        // }, 7000);
+                }
+                )
+        }
 } // end class
 
 /**
@@ -793,5 +839,4 @@ class TimeBoxOrthodox implements Paskhalia {
  */
 // 
 let apr = new TimeBoxOrthodox()
-apr.linkToID()
 
