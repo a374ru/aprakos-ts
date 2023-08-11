@@ -335,6 +335,7 @@ class TimeBoxOrthodox implements Paskhalia {
                 this.pyatDesyatnica()
                 // this.replaceDataTooltip()
                 this.linkToID()
+                this.devTools()
 
                 try {
                         this.insertElements()
@@ -827,6 +828,28 @@ class TimeBoxOrthodox implements Paskhalia {
                 }
                 )
         }
+        devTools() {
+                const protocolHTTP: any = document.location.protocol
+                const styleCSS = document.styleSheets.length != 0;
+
+                if (protocolHTTP == "http:" && styleCSS) {
+                        const a = document.styleSheets[0];
+                        const b: any = [...a.cssRules];
+                        let c = b.find((obj: any) => obj.selectorText === '.tooltip');
+                        c.style.setProperty('color', 'orangered');
+                        c.style.setProperty('background-color', '#faa3');
+                        c = b.find((obj: any) => obj.selectorText === '.tooltip');
+                        c.style.setProperty('color', 'orangered');
+                        c.style.setProperty('background-color', '#faa3');
+                        // c.style.setProperty('text-decoration', 'tan underline wavy 2px');
+
+                }
+        }
+
+
+
+
+
 } // end class
 
 /**
