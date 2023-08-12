@@ -314,17 +314,22 @@ class TimeBoxOrthodox {
         return description;
     }
     linkToID() {
-        let anc = document.location.hash.slice(1);
-        let pageName = document.location.pathname.split('/').lastIndexOf("stvol.html");
-        if (anc != "" && pageName == -1) {
+        let anchor = document.location.hash.slice(1);
+        const segmentsURL = document.location.pathname.split('/');
+        const previosURL = localStorage.getItem("ystm");
+        localStorage.setItem("ystm", document.location.pathname);
+        if (anchor != "" && segmentsURL.lastIndexOf("stvol.html") == -1) {
             try {
-                document.getElementById(anc).setAttribute('style', 'color: #a55858; background-color: #f4b5ff36; padding: 0px 0.4em 0px; border-radius: 7px;');
+                document.getElementById(anchor).setAttribute('style', 'cursor: pointer; color: #a55858; background-color: #f4b5ff36; padding: 0px 0.4em 0px; border-radius: 7px;');
+                if ((previosURL === null || previosURL === void 0 ? void 0 : previosURL.search("about.html")) != -1) {
+                    document.getElementById(anchor).setAttribute('onclick', 'document.location.replace("../about.html"); return false');
+                }
             }
             catch (error) {
                 console.log(error);
-                anc = " …не найден.";
+                anchor = " …не найден.";
             }
-            return 'Элемент id в составе URL: #' + anc;
+            return 'Элемент id в составе URL: #' + anchor;
         }
         return null;
     }
