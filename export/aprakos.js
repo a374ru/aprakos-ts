@@ -320,7 +320,7 @@ class TimeBoxOrthodox {
         localStorage.setItem("ystm", document.location.pathname);
         if (anchor != "" && segmentsURL.lastIndexOf("stvol.html") == -1) {
             try {
-                document.getElementById(anchor).setAttribute('style', 'cursor: pointer; color: #a55858; background-color: #f4b5ff36; padding: 0px 0.4em 0px; border-radius: 7px;');
+                document.getElementById(anchor).setAttribute('style', 'cursor: pointer; color: #a55858; background-color: #f4b5ff22; padding: 0px 0.4em 0px; border-radius: 7px;');
                 if ((previosURL === null || previosURL === void 0 ? void 0 : previosURL.search("about.html")) != -1) {
                     document.getElementById(anchor).setAttribute('onclick', 'document.location.replace("../about.html"); return false');
                 }
@@ -352,14 +352,19 @@ class TimeBoxOrthodox {
         const protocolHTTP = document.location.protocol;
         const styleCSS = document.styleSheets.length != 0;
         if (protocolHTTP == "http:" && styleCSS) {
-            const a = document.styleSheets[0];
-            const b = [...a.cssRules];
-            let c = b.find((obj) => obj.selectorText === '.tooltip');
-            c.style.setProperty('color', 'orangered');
-            c.style.setProperty('background-color', '#faa3');
-            c = b.find((obj) => obj.selectorText === '.tooltip');
-            c.style.setProperty('color', 'orangered');
-            c.style.setProperty('background-color', '#faa3');
+            try {
+                const a = document.styleSheets[0];
+                const b = [...a.cssRules];
+                let c = b.find((obj) => obj.selectorText === '.tooltip');
+                c.style.setProperty('color', 'orangered');
+                c.style.setProperty('background-color', '#faa3');
+                c = b.find((obj) => obj.selectorText === '.tooltip');
+                c.style.setProperty('color', 'orangered');
+                c.style.setProperty('background-color', '#faa3');
+            }
+            catch (error) {
+                console.log(error);
+            }
         }
     }
 }

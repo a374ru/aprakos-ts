@@ -782,7 +782,7 @@ class TimeBoxOrthodox implements Paskhalia {
 
                 if (anchor != "" && segmentsURL.lastIndexOf("stvol.html") == -1) {
                         try {
-                                document.getElementById(anchor)!.setAttribute('style', 'cursor: pointer; color: #a55858; background-color: #f4b5ff36; padding: 0px 0.4em 0px; border-radius: 7px;')
+                                document.getElementById(anchor)!.setAttribute('style', 'cursor: pointer; color: #a55858; background-color: #f4b5ff22; padding: 0px 0.4em 0px; border-radius: 7px;')
                                 if (previosURL?.search("about.html") != -1) { document.getElementById(anchor)!.setAttribute('onclick', 'document.location.replace("../about.html"); return false') }
 
                         } catch (error) {
@@ -835,20 +835,23 @@ class TimeBoxOrthodox implements Paskhalia {
                 )
         }
         devTools() {
+
                 const protocolHTTP: any = document.location.protocol
-                const styleCSS = document.styleSheets.length != 0;
 
+                const styleCSS = document.styleSheets.length != 0
                 if (protocolHTTP == "http:" && styleCSS) {
-                        const a = document.styleSheets[0];
-                        const b: any = [...a.cssRules];
-                        let c = b.find((obj: any) => obj.selectorText === '.tooltip');
-                        c.style.setProperty('color', 'orangered');
-                        c.style.setProperty('background-color', '#faa3');
-                        c = b.find((obj: any) => obj.selectorText === '.tooltip');
-                        c.style.setProperty('color', 'orangered');
-                        c.style.setProperty('background-color', '#faa3');
-                        // c.style.setProperty('text-decoration', 'tan underline wavy 2px');
+                        try {
+                                const a = document.styleSheets[0]
+                                const b: any = [...a.cssRules]
+                                let c = b.find((obj: any) => obj.selectorText === '.tooltip')
+                                c.style.setProperty('color', 'orangered')
+                                c.style.setProperty('background-color', '#faa3')
+                                c = b.find((obj: any) => obj.selectorText === '.tooltip')
+                                c.style.setProperty('color', 'orangered')
+                                c.style.setProperty('background-color', '#faa3')
+                        // c.style.setProperty('text-decoration', 'tan underline wavy 2px')
 
+                        } catch (error) { console.log(error) }
                 }
         }
 
