@@ -9,7 +9,7 @@
 ### Вычисления православных зачал для всего Пасхального года c учетом Двунадесятых праздников, отступок и преступок всего года по типикону.
 
 
-[Кодовая документация проекта](generated/index.html) — иначе `API`
+[Кодовая документация проекта](generated/index.html) — <span style="color: #e34234;">**`API`**</span>
 
 <!-- Documents: [description](https://a374ru.github.io/aprakos/001.html) … RU -->
 
@@ -18,10 +18,10 @@
 
 ### Дополнительно…
 
-+ [Настройка проекта `TypeScript`](001.md)
-- [Настройка документации `TypeDoc`](typedoc.md)
-+ [Публикация документации на `ReadTheDocs`](readthedocs.md)
-- [Настройка документации `WIKI Github`](wiki.md)
+1. [Настройка проекта `TypeScript`](001.md)
+2. [Настройка документации `TypeDoc`](typedoc.md)
+3. ~~[Публикация документации на `ReadTheDocs`](readthedocs.md)~~
+4. [Настройка документации `WIKI Github`](wiki.md)
 <!-- [text](https://link) -->
 
 <br>
