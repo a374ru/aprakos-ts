@@ -596,7 +596,7 @@ class TimeBoxOrthodox implements Paskhalia {
 
                 }
                 else {
-
+                        this.formatsEaster.vozStupka = stupka
                         voz = `Воздвижение приходится на седмицу - ${kolichestvoSedmicPoPyatidesyatnice}. Отступок нет.`
                 }
 
@@ -834,6 +834,12 @@ class TimeBoxOrthodox implements Paskhalia {
                 }
                 )
         }
+
+/**
+ * Метод устанавливает подсказку и стили для выделения элементов при открытии ресурса
+ * на локальном сервере по протоколу `HTTP`
+ *
+ */
         devTools() {
 
                 const protocolHTTP: any = document.location.protocol

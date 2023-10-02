@@ -35,11 +35,11 @@
 
 ## Запуск генератора `typedoc` с опциями
 
-Здесь мы запускаем `typedoc` с опциями из файла `typedoc.json`
+Здесь мы запускаем `typedoc` с опциями `--options` из файла `typedoc.json`
 
 
 ```zsh
-npx typedoc --option ../typedoc.json
+npx typedoc --options ../typedoc.json
 ```
 
 ## Простая сборка 

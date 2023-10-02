@@ -4,6 +4,19 @@ const CONST_MLS_MiF = CONST_MLS_DAY * 7 * 10;
 const CONST_LOG_WARNING = "Будте вниматильней, проверте правильность вводимой даты.";
 const ER_606 = "НЕ ОПРЕДЕЛЕН КЛЮЧ ГОДА";
 class TimeBoxOrthodox {
+    glasSedmici() {
+        let gls = this.formatsEaster.currentWeek % 8 - 1;
+        if (gls > 0) {
+            this.formatsEaster.glas = gls;
+        }
+        else if (gls < 0) {
+            this.formatsEaster.glas = 7;
+        }
+        else {
+            this.formatsEaster.glas = 8;
+        }
+        return `Для текущей ${this.formatsEaster.currentWeek} седмицы установлен глас – ${this.formatsEaster.glas}`;
+    }
     constructor(userYear) {
         this.formatsEaster = {
             dayName: undefined,
@@ -102,19 +115,6 @@ class TimeBoxOrthodox {
         finally {
             console.log('Продолжаем … полет по коду !!!');
         }
-    }
-    glasSedmici() {
-        let gls = this.formatsEaster.currentWeek % 8 - 1;
-        if (gls > 0) {
-            this.formatsEaster.glas = gls;
-        }
-        else if (gls < 0) {
-            this.formatsEaster.glas = 7;
-        }
-        else {
-            this.formatsEaster.glas = 8;
-        }
-        return `Для текущей ${this.formatsEaster.currentWeek} седмицы установлен глас – ${this.formatsEaster.glas}`;
     }
     validate(userdate) {
         let valYear = 0;
@@ -227,6 +227,7 @@ class TimeBoxOrthodox {
                         Преступка составляет -  ${stupka} седмицы.`;
         }
         else {
+            this.formatsEaster.vozStupka = stupka;
             voz = `Воздвижение приходится на седмицу - ${kolichestvoSedmicPoPyatidesyatnice}. Отступок нет.`;
         }
         return voz;
