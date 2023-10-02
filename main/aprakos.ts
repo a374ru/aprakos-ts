@@ -872,3 +872,5 @@ class TimeBoxOrthodox implements Paskhalia {
 // 
 let apr = new TimeBoxOrthodox()
 
+// const ystm = () => { return console.log("=-=-=-=123-=-=-=-") }
+// apr.calculateAllWeks()
