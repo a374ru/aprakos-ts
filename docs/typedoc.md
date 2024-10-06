@@ -50,5 +50,23 @@ npx typedoc --options ../typedoc.json
 npx typedoc 
 ```
 
+## Добавление документации
+
+Если нужно добавить всю документацию `markdown`,то добавьте в `typedoc.json` эту строку:
+
+```sh
+"projectDocuments": ["my_folder/*.md"]
+```
+
+Или перечислите все файлы нужные по именно:
+
+```sh
+"projectDocuments": [
+   "my_folder/a.md", 
+   "my_folder/b.md",
+   "my_folder/c.md",
+]
+```
+
 <br><br>
 ![img](assets/img/the_end.png)
