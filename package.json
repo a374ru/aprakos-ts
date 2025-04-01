@@ -10,7 +10,9 @@
   "files": [
     "./main"
   ],
-  "scripts": {},
+  "scripts": {
+    "build": "npx tsc"
+  },
   "keywords": [
     "aprakos"
   ],

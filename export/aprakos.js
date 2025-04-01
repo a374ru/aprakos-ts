@@ -4,19 +4,6 @@ const CONST_MLS_MiF = CONST_MLS_DAY * 7 * 10;
 const CONST_LOG_WARNING = "Будте вниматильней, проверте правильность вводимой даты.";
 const ER_606 = "НЕ ОПРЕДЕЛЕН КЛЮЧ ГОДА";
 class TimeBoxOrthodox {
-    glasSedmici() {
-        let gls = this.formatsEaster.currentWeek % 8 - 1;
-        if (gls > 0) {
-            this.formatsEaster.glas = gls;
-        }
-        else if (gls < 0) {
-            this.formatsEaster.glas = 7;
-        }
-        else {
-            this.formatsEaster.glas = 8;
-        }
-        return `Для текущей ${this.formatsEaster.currentWeek} седмицы установлен глас – ${this.formatsEaster.glas}`;
-    }
     constructor(userYear) {
         this.formatsEaster = {
             dayName: undefined,
@@ -115,6 +102,19 @@ class TimeBoxOrthodox {
         finally {
             console.log('Продолжаем … полет по коду !!!');
         }
+    }
+    glasSedmici() {
+        let gls = this.formatsEaster.currentWeek % 8 - 1;
+        if (gls > 0) {
+            this.formatsEaster.glas = gls;
+        }
+        else if (gls < 0) {
+            this.formatsEaster.glas = 7;
+        }
+        else {
+            this.formatsEaster.glas = 8;
+        }
+        return `Для текущей ${this.formatsEaster.currentWeek} седмицы установлен глас – ${this.formatsEaster.glas}`;
     }
     validate(userdate) {
         let valYear = 0;
@@ -318,7 +318,9 @@ class TimeBoxOrthodox {
         let anchor = document.location.hash.slice(1);
         const segmentsURL = document.location.pathname.split('/');
         const previosURL = localStorage.getItem("ystm");
-        localStorage.setItem("ystm", document.location.pathname);
+        if (!anchor) {
+            localStorage.setItem("ystm", document.location.pathname);
+        }
         if (anchor != "" && segmentsURL.lastIndexOf("stvol.html") == -1) {
             try {
                 document.getElementById(anchor).setAttribute('style', 'cursor: pointer; color: #a55858; background-color: #f4b5ff22; padding: 0px 0.4em 0px; border-radius: 7px;');
